@@ -1,0 +1,22 @@
+allprojects {
+  repositories {
+    jcenter()
+  }
+}
+
+ext {
+  //Android
+  androidBuildToolsVersion = "25.0.2"
+  androidMinSdkVersion = 19
+  androidTargetSdkVersion = 23
+  androidCompileSdkVersion = 23
+
+  //Libraries
+  androidSupportVersion = '23.3.0'
+
+  baseDependencies =[
+          androidSupportV7:   "com.android.support:appcompat-v7:${androidSupportVersion}",
+          androidAnnotations: "com.android.support:support-annotations:${androidSupportVersion}",
+          recyclerView:       "com.android.support:recyclerview-v7:${androidSupportVersion}",
+  ]
+}

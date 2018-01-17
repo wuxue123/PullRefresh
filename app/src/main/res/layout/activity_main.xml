@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    
+    <data>
+        <variable name="adapter" type="com.jc.android.component.pullrefresh.DemoAdapter"/>
+    </data>
+    
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.jc.android.component.pullrefresh.MainActivity">
+
+        <com.jc.android.component.pulltorefresh.PullToRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.jc.android.component.pulltorefresh.PullableRecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                bind:adapter="@{adapter}"/>
+
+        </com.jc.android.component.pulltorefresh.PullToRefreshLayout>
+
+    </RelativeLayout>
+</layout>

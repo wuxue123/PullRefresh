@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply from:'../maven_push.gradle'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'  // Some libraries have issues with this
+        disable 'OldTargetApi'    // Due to Robolectric that modifies the manifest when running tests
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    buildToolsVersion '25.0.0'
+}
+
+dependencies {
+    def baseDependencies = rootProject.ext.baseDependencies
+
+    compile baseDependencies.androidSupportV7
+    compile baseDependencies.androidAnnotations
+    compile baseDependencies.recyclerView
+
+    compile files('libs/gif.jar')
+}
+
